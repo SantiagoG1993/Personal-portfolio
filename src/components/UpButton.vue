@@ -33,6 +33,7 @@ onMounted(() => {
 
 <style scoped>
 .up_button_main_container{
+z-index: 1000;
     animation: slideInRight 0.3s;
     width: 60px;
     height: 60px;

@@ -31,8 +31,8 @@ const handleHover = ()=>{
 
 <style scoped>
     .card_main_container{
-        width: 320px;
-        height: 200px;
+        width: 300px;
+        height: 180px;
         background-color: transparent;
         border-radius: 4px;
         display: flex;
