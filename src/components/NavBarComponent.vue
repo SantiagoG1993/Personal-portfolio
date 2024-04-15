@@ -1,22 +1,22 @@
 <template>
     <div class="nav_main_container">
         <div id="social_container">
-            <i class="fa-brands fa-github"></i>
-            <i class="fa-brands fa-linkedin"></i>
+            <a href="https://github.com/SantiagoG1993" target="_blank" ><i class="fa-brands fa-github"></i></a>
+            <a href="http://www.linkedin.com/in/santiago-gamarra-b2a4b1287" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
         </div>
         <LogoComponent />
         <i class="fa-solid fa-bars" @click="showNav"></i>
-        <nav class="nav_container">
+        <nav class="nav_container wow animate__animated animate__fadeInDown">
             <p>Home</p>
-            <p>About</p>
-            <p>Projects</p>
-            <p>Contact</p>
+            <p @click="scrollTo(1)">About</p>
+            <p @click="scrollTo(2)">Projects</p>
+            <p @click="scrollTo(3)">Contact</p>
         </nav>
-        <nav class="nav_r_container" v-if="navIsVisible == true" ref="nav_container">
+        <nav class="nav_r_container " v-if="navIsVisible == true" ref="nav_container">
             <p>Home</p>
-            <p>About</p>
-            <p>Projects</p>
-            <p>Contact</p>
+            <p @click="scrollTo(1)">About</p>
+            <p @click="scrollTo(2)">Projects</p>
+            <p @click="scrollTo(3)">Contact</p>
 
         </nav>
     </div>
@@ -24,10 +24,29 @@
 
 <script setup>
 import LogoComponent from './LogoComponent.vue'
-import { ref } from 'vue';
+import { ref,onMounted } from 'vue';
 import { onClickOutside } from '@vueuse/core'
+import WOW from 'wow.js'
 import 'animate.css'
 
+
+onMounted(()=>{
+    const wow = new WOW(
+        {
+            duration:'0.3s'
+        }
+    )
+    wow.init();
+})
+
+const scrollTo = (number)=>{
+    document.documentElement.scrollTo(
+        {
+            top:window.innerHeight*number,
+            behavior:'smooth'
+        }
+    )
+}
 const navIsVisible = ref(false)
 const nav_container = ref(null)
 
@@ -125,8 +144,9 @@ onClickOutside(nav_container,()=>{
     }    
     #social_container{
         animation: slideInRight .3s;
-        right: 20px;
+        right: 35px;
         position: absolute;
+        gap: 25px;
     }
     #social_container i:hover{
         color: var(--lgrey);

@@ -1,16 +1,51 @@
 <template>
     <div class="projects_section_main_container">
-        <h1 id="latest">Latest <span id="projects">Projects</span></h1>
-        <div class="cards_container">
-            <CardProject />
-            <CardProject />
-            <CardProject />
+        <h1 id="latest" class="wow animate__animated animate__fadeIn ">Latest <span id="projects">Projects</span></h1>
+        <div class="cards_container wow animate__animated animate__fadeInUp" >
+            <CardProject v-for="project of projects" 
+            :key="project.projectName"
+            :projectName="project.projectName"
+            :description="project.description"
+            :img="project.img"
+            />
+
         </div>
     </div>
 </template>
 
 <script setup>
+import { onMounted } from 'vue'
 import CardProject from './CardProject.vue'
+import WOW from 'wow.js'
+import 'animate.css'
+
+
+onMounted(()=>{
+    const wow = new WOW(
+        {
+            duration:'0.3s'
+        }
+    );
+    wow.init();
+})
+
+const projects = [
+    {
+        projectName:'Taskwing',
+        description:'Web application dedicated to task management',
+        img:'taskwing.jpg'
+    },
+    {
+        projectName:'Banco San Pedro',
+        description:'Online banking application',
+        img:'bancosp.jpg'
+    },
+    {
+        projectName:'Alma Libre sublimados',
+        description:'E-commerce for a sublimated arcticles business',
+        img:'almalibre.jpg'
+    },
+]
 
 </script>
 

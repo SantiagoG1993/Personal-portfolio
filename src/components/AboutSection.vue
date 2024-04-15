@@ -1,13 +1,14 @@
 <template>
-    <div class="about_section_main_container">
-        <img src="img_cv.png" alt="img_about" id="img_about">
+    <div id="aboutSection" class="about_section_main_container">
+        <img src="img_about_1.svg" alt="" id="img_1" class="wow animate__animated animate__fadeIn">
+        <img src="img_cv.png" alt="img_about" id="img_about" class="wow animate__animated  animate__fadeInRight "> 
         <section class="text_container">
             <h1 id="about">About <span id="me">Me</span></h1>
-            <p id="text_description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam minima qui ea aut deserunt. Ratione asperiores porro molestiae sapiente reiciendis. Eveniet laborum repudiandae dolorem praesentium magnam eligendi? Cum, commodi quaerat.</p>
+            <p id="text_description" class="wow animate__animated animate__fadeInDown">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam minima qui ea aut deserunt. Ratione asperiores porro molestiae sapiente reiciendis. Eveniet laborum repudiandae dolorem praesentium magnam eligendi? Cum, commodi quaerat.</p>
         </section>
         <section class="tecs_container">
             <h2>Technologies</h2>
-            <div class="tecs_icos_container">
+            <div class="tecs_icos_container wow animate__animated animate__fadeInDown" >
                 <i class="fa-brands fa-html5"></i> 
                 <i class="fa-brands fa-css3-alt"></i>
                 <i class="fa-brands fa-js"></i>
@@ -19,7 +20,7 @@
                 <i class="fa-brands fa-figma"></i>
             </div>
         </section>
-            <ul class="list_tecs">
+            <ul class="list_tecs wow animate__animated animate__fadeInRight">
                 <li>Html</li>
                 <li>Css</li>
                 <li>Javascript</li>
@@ -30,11 +31,24 @@
                 <li>PostgreSQL</li>
                 <li>Figma</li>
             </ul>
-
+        <UpButton />
     </div>
 </template>
 
 <script setup>
+import { onMounted } from 'vue'
+import UpButton from './UpButton.vue';
+import WOW from 'wow.js'
+import 'animate.css'
+
+onMounted(()=>{
+    const wow = new WOW(
+        {
+            duration:'0.3s'
+        }
+    );
+    wow.init();
+})
 
 </script>
 
@@ -48,6 +62,12 @@
 }
 #img_about{
 display: none;
+}
+#img_1{
+    position: absolute;
+    width: 50%;
+    top: 50px;
+    left: -45px;
 }
 .text_container{
     width:100%;
@@ -150,7 +170,12 @@ font-size: 22px;
     right: 25%;
     color: rgb(52, 52, 52);
 bottom: 10%;
-
 }
+#img_1{
+    width: unset;
+    top: 30px;
+    left: 10%;
+}
+
 }
 </style>

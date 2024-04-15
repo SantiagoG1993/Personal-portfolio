@@ -1,21 +1,39 @@
 <template>
-    <div class="home_section_main_container">
+    <div id="homeSection" class="home_section_main_container">
         <NavBarComponent />
-        <h1 id="title">Santiago Gamarra</h1>
-        <h2 id="subtitle">Full stack developer</h2>
-        <img src="img_cv.png" alt="profileimg" id="img"> 
-        <p id="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, velit! Iure pariatur accusamus eligendi natus. Doloremque officiis fugiat inventore rem quaerat culpa minus non, earum aliquam, aliquid facere veniam sint!</p>
-        <div class="btn_container">
+        <h1 id="title" class="wow animate__animated animate__fadeInDown">Santiago Gamarra</h1>
+        <h2 id="subtitle" class="wow animate__animated animate__fadeInUp" >Full stack developer</h2>
+        <img src="img_cv.png" alt="profileimg" id="img" class="wow animate__animated animate__fadeInLeft"> 
+        <p id="description" class="wow animate__animated animate__fadeInRight">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, velit! Iure pariatur accusamus eligendi natus. Doloremque officiis fugiat inventore rem quaerat culpa minus non, earum aliquam, aliquid facere veniam sint!</p>
+        <div class="btn_container wow animate__animated animate__fadeInDown" >
             <button class="btn resume_btn">Download resume</button>
-            <button class="btn read_btn">Read more!</button>
+            <button class="btn read_btn" @click="scrollTo(1)">Read more!</button>
         </div>
     </div>
 </template>
 
 <script setup>
+import { onMounted } from 'vue'
 import NavBarComponent from './NavBarComponent.vue'
+import WOW from 'wow.js'
 import 'animate.css'
 
+onMounted(()=>{
+    const wow = new WOW(
+        {
+            duration:'0.3s'
+        }
+    )
+    wow.init();
+})
+const scrollTo = (number)=>{
+    document.documentElement.scrollTo(
+        {
+            top:window.innerHeight*number,
+            behavior:'smooth'
+        }
+    )
+}
 </script>
 
 <style scoped>
@@ -126,7 +144,9 @@ h1,h2,#description{
     bottom: 20%;
 }
 .resume_btn,.read_btn{
-    width: 250px;
+    width: 300px;
+    font-size: 18px;
+    height: 60px!important;
 }
 h1{
     margin: 0px;

@@ -1,17 +1,19 @@
 <template>
-    <div>
+    <div class="app_main_container">
       <HomeSection />
       <AboutSection />
       <ProjectsSection />
       <ContactSection />
+<!--       <UpButton /> -->
     </div>
 </template>
 
 <script setup>
-import HomeSection from './components/HomeSection.vue'
-import AboutSection from './components/AboutSection.vue'
-import ProjectsSection from './components/ProjectsSection.vue'
-import ContactSection from './components/ContactSection.vue'
+import HomeSection from './components/HomeSection.vue';
+import AboutSection from './components/AboutSection.vue';
+import ProjectsSection from './components/ProjectsSection.vue';
+import ContactSection from './components/ContactSection.vue';
+
 
 </script>
 
@@ -28,6 +30,9 @@ import ContactSection from './components/ContactSection.vue'
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+.app_main_container{
+  position: relative;
 }
 
 </style>

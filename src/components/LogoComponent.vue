@@ -1,15 +1,27 @@
 <template>
-    <div class="logo_main_container">
+    <div class="logo_main_container wow animate__animated animate__fadeInLeft">
         <section class="name_container">
-            <p class="symbol">&lt;</p>
+            <p class="symbol">&lt;&sol;</p>
             <p id="name">Santiago Gamarra</p>
-            <p class="symbol">&sol;&gt;</p>
+            <p class="symbol">&gt;</p>
         </section>
         <p id="subtitle">Full Stack web developer</p>
     </div>
 </template>
 
 <script setup>
+import { onMounted } from 'vue';
+import WOW from 'wow.js';
+import 'animate.css';
+
+onMounted(()=>{
+    const wow = new WOW(
+        {
+            duration:'0.3s'
+        }
+    )
+    wow.init();
+})
 
 </script>
 
