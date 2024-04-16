@@ -1,24 +1,30 @@
 <template>
     <div class="projects_section_main_container">
-        <h1 id="latest" class="wow animate__animated animate__fadeIn ">Latest <span id="projects">Projects</span></h1>
+        <h1 v-if="language == 'en'" id="latest" class="wow animate__animated animate__fadeIn ">Latest <span id="projects">Projects</span></h1>
+        <h1 v-else id="latest" class="wow animate__animated animate__fadeIn ">Proyectos <span id="projects">Recientes</span></h1>
         <div class="cards_container wow animate__animated animate__fadeInUp" >
             <CardProject v-for="project of projects" 
             :key="project.projectName"
             :projectName="project.projectName"
-            :description="project.description"
+            :description="language === 'en' ? project.description_eng : project.description_sp"
             :img="project.img"
             />
-
         </div>
     </div>
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted,computed } from 'vue'
 import CardProject from './CardProject.vue'
 import WOW from 'wow.js'
 import 'animate.css'
+import { useStore } from 'vuex'
 
+const store=useStore()
+
+const language = computed(()=>{
+    return store.getters.getLanguage
+})
 
 onMounted(()=>{
     const wow = new WOW(
@@ -32,17 +38,20 @@ onMounted(()=>{
 const projects = [
     {
         projectName:'Taskwing',
-        description:'Web application dedicated to task management',
+        description_eng:'Web application dedicated to task management',
+        description_sp:'Aplicacion web dedicada a la gestion de tareas',
         img:'taskwing.jpg'
     },
     {
         projectName:'Banco San Pedro',
-        description:'Online banking application',
+        description_eng:'Online banking application',
+        description_sp:'Aplicacion homebanking',
         img:'bancosp.jpg'
     },
     {
         projectName:'Alma Libre sublimados',
-        description:'E-commerce for a sublimated arcticles business',
+        description_eng:'E-commerce for a sublimated arcticles business',
+        description_sp:'E-commerce para un negocio de articulos sublimados',
         img:'almalibre.jpg'
     },
 ]

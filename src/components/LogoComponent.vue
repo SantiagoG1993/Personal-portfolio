@@ -5,14 +5,22 @@
             <p id="name">Santiago Gamarra</p>
             <p class="symbol">&gt;</p>
         </section>
-        <p id="subtitle">Full Stack web developer</p>
+        <p v-if="language == 'en'" id="subtitle">Full Stack web developer</p>
+        <p v-else id="subtitle">Desarrollador web Full Stack</p>
     </div>
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted,computed } from 'vue';
 import WOW from 'wow.js';
 import 'animate.css';
+import { useStore } from 'vuex'
+
+const store=useStore()
+
+const language = computed(()=>{
+    return store.getters.getLanguage
+})
 
 onMounted(()=>{
     const wow = new WOW(

@@ -4,32 +4,58 @@
             <a href="https://github.com/SantiagoG1993" target="_blank" ><i class="fa-brands fa-github"></i></a>
             <a href="http://www.linkedin.com/in/santiago-gamarra-b2a4b1287" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
         </div>
+        <div class="flags_container">
+            <img src="spflag.png" alt="spain_flag" @click="handleFlagClick('sp')" :class="{'--selected':language == 'sp'}">
+            <img src="enflag.png" alt="england_flag" @click="handleFlagClick('en')" :class="{'--selected':language == 'en'}">
+        </div>
         <LogoComponent />
         <i class="fa-solid fa-bars" @click="showNav"></i>
-        <nav class="nav_container wow animate__animated animate__fadeInDown">
+        <nav class="nav_container wow animate__animated animate__fadeInDown" v-if="language == 'en'">
             <p>Home</p>
             <p @click="scrollTo(1)">About</p>
             <p @click="scrollTo(2)">Projects</p>
             <p @click="scrollTo(3)">Contact</p>
         </nav>
-        <nav class="nav_r_container " v-if="navIsVisible == true" ref="nav_container">
+        <nav class="nav_container wow animate__animated animate__fadeInDown" v-else>
+            <p>Home</p>
+            <p @click="scrollTo(1)">Sobre mi</p>
+            <p @click="scrollTo(2)">Proyectos</p>
+            <p @click="scrollTo(3)">Contacto</p>
+        </nav>
+        <nav class="nav_r_container " v-if="navIsVisible == true && language == 'en'" ref="nav_container" >
             <p>Home</p>
             <p @click="scrollTo(1)">About</p>
             <p @click="scrollTo(2)">Projects</p>
             <p @click="scrollTo(3)">Contact</p>
-
+        </nav>
+        <nav class="nav_r_container " v-if="navIsVisible == true && language == 'es'" ref="nav_container" >
+            <p>Home</p>
+            <p @click="scrollTo(1)">Sobre mi</p>
+            <p @click="scrollTo(2)">Proyectos</p>
+            <p @click="scrollTo(3)">Contacto</p>
         </nav>
     </div>
 </template>
 
 <script setup>
 import LogoComponent from './LogoComponent.vue'
-import { ref,onMounted } from 'vue';
+import { ref,onMounted,computed } from 'vue';
 import { onClickOutside } from '@vueuse/core'
 import WOW from 'wow.js'
 import 'animate.css'
+import { useStore } from 'vuex'
 
+const store=useStore()
 
+const language = computed(()=>{
+    return store.getters.getLanguage
+})
+
+const handleFlagClick =(lang)=>{
+    store.commit('setLanguage',lang)
+    console.log(language.value)
+
+}
 onMounted(()=>{
     const wow = new WOW(
         {
@@ -70,6 +96,26 @@ onClickOutside(nav_container,()=>{
     justify-content: space-between;
     padding: 30px;
 }
+.flags_container{
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        left: 43%;
+    }
+    .flags_container img{
+        border-radius: 2px;
+        filter: grayscale(100%);
+    }
+    .flags_container img:hover{
+        filter: grayscale(20%)!important; 
+        transition: all .2s ease-in-out;
+        cursor: pointer;
+    }
+    .--selected{
+        filter: grayscale(20%)!important;      
+    }
 .fa-bars{
     color: var(--grey1);
     font-size: 30px;
@@ -153,5 +199,10 @@ onClickOutside(nav_container,()=>{
         cursor: pointer;
         transition: .6s all ease-in-out;
     }
+    .flags_container{
+        gap: 20px;
+        left: 30%;
+    }
+    
 }
 </style>

@@ -3,11 +3,14 @@
         <img src="img_about_1.svg" alt="" id="img_1" class="wow animate__animated animate__fadeIn">
         <img src="img_cv.png" alt="img_about" id="img_about" class="wow animate__animated  animate__fadeInRight "> 
         <section class="text_container">
-            <h1 id="about">About <span id="me">Me</span></h1>
-            <p id="text_description" class="wow animate__animated animate__fadeInDown">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam minima qui ea aut deserunt. Ratione asperiores porro molestiae sapiente reiciendis. Eveniet laborum repudiandae dolorem praesentium magnam eligendi? Cum, commodi quaerat.</p>
+            <h1 v-if="language == 'en'" id="about">About <span id="me">Me</span></h1>
+            <h1 v-else id="about">Sobre <span id="me">Mi</span></h1>
+            <p v-if="language == 'en'"id="text_description" class="wow animate__animated animate__fadeInDown">I am a person who likes to combine logical problem solving with a creative approach to develop unique digital experiences. I love working as a team, collaborating with designers and other developers to take our ideas to the next level.</p>
+            <p v-else id="text_description" class="wow animate__animated animate__fadeInDown">Soy una persona a la que le gusta combinar la resolución lógica de problemas con un enfoque creativo para desarrollar experiencias digitales únicas. Me encanta trabajar en equipo, colaborar con diseñadores y otros desarrolladores para llevar nuestras ideas al siguiente nivel.</p>
         </section>
         <section class="tecs_container">
-            <h2>Technologies</h2>
+            <h2 v-if="language == 'en'">Technologies</h2>
+            <h2 v-else>Tecnologias</h2>
             <div class="tecs_icos_container wow animate__animated animate__fadeInDown" >
                 <i class="fa-brands fa-html5"></i> 
                 <i class="fa-brands fa-css3-alt"></i>
@@ -25,21 +28,28 @@
                 <li>Css</li>
                 <li>Javascript</li>
                 <li>Vue.js</li>
+                <li>Figma</li>
                 <li>JAVA</li>
                 <li>Spring Framework</li>
                 <li>SpringBoot</li>
                 <li>PostgreSQL</li>
-                <li>Figma</li>
             </ul>
         <UpButton />
     </div>
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted,computed } from 'vue'
 import UpButton from './UpButton.vue';
 import WOW from 'wow.js'
 import 'animate.css'
+import { useStore } from 'vuex'
+
+const store=useStore()
+
+const language = computed(()=>{
+    return store.getters.getLanguage
+})
 
 onMounted(()=>{
     const wow = new WOW(
@@ -59,9 +69,21 @@ onMounted(()=>{
     background-color: #B8B8B8;
     user-select: none;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
 }
 #img_about{
-display: none;
+filter: grayscale(80%);
+width: 40%;
+height: 200px;
+object-fit: cover;
+position: absolute;
+bottom: 5%;
+left: 15px;
+border-radius:5px!important;
 }
 #img_1{
     position: absolute;
@@ -88,7 +110,8 @@ display: none;
     color: var(--green1);
 }
 #text_description{
-    font-weight: 200;
+    font-weight: 300;
+    font-size: 24px;
     width: 90%;
 }
 .tecs_container{
@@ -113,7 +136,10 @@ h2{
     color: rgb(96, 94, 94);
 }
 .list_tecs{
-display: none;
+    position: absolute;
+    right: 10%;
+    bottom: 70px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 @media (min-width:1000px){
 #img_about{
@@ -126,7 +152,9 @@ display: none;
     object-fit: cover;
     filter: grayscale(90%);
     position: absolute;
-} 
+    left: auto
+}
+
 .text_container{
 /*     border: 1px solid red; */
     width: 50%;

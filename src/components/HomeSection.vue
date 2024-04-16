@@ -2,21 +2,35 @@
     <div id="homeSection" class="home_section_main_container">
         <NavBarComponent />
         <h1 id="title" class="wow animate__animated animate__fadeInDown">Santiago Gamarra</h1>
-        <h2 id="subtitle" class="wow animate__animated animate__fadeInUp" >Full stack developer</h2>
-        <img src="img_cv.png" alt="profileimg" id="img" class="wow animate__animated animate__fadeInLeft"> 
-        <p id="description" class="wow animate__animated animate__fadeInRight">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, velit! Iure pariatur accusamus eligendi natus. Doloremque officiis fugiat inventore rem quaerat culpa minus non, earum aliquam, aliquid facere veniam sint!</p>
+        <h2 id="subtitle" class="wow animate__animated animate__fadeInUp" v-if="language == 'en'">Full Stack web developer</h2>
+        <h2 id="subtitle" class="wow animate__animated animate__fadeInUp" v-else>Desarrollador web full stack</h2>
+        <img src="IMAGE.JPG" alt="profileimg" id="img" class="wow animate__animated animate__fadeInLeft"> 
+        <p v-if="language=='en'" id="description" class="wow animate__animated animate__fadeInRight">Hi! , I'm Santiago, i build websites and applications using Vue.js and Java. <br>I'm from Buenos Aires , Argentina and i'm currently working as a freelancer
+        </p>
+        <p v-else id="description" class="wow animate__animated animate__fadeInRight">¡Hola! , Soy Santiago, desarrollo sitios web y aplicaciones usando Vue.js y Java. <br>Soy de Buenos Aires, Argentina y actualmente trabajo como freelance
+        </p>
         <div class="btn_container wow animate__animated animate__fadeInDown" >
-            <button class="btn resume_btn">Download resume</button>
-            <button class="btn read_btn" @click="scrollTo(1)">Read more!</button>
+            <button v-if="language=='en'" class="btn resume_btn">Download resume</button>
+            <button v-else class="btn resume_btn">Descargar CV</button>
+            <button v-if="language=='en'" class="btn read_btn" @click="scrollTo(1)">Read more!</button>
+            <button v-else class="btn read_btn" @click="scrollTo(1)">Saber mas!</button>
         </div>
     </div>
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted,computed } from 'vue'
 import NavBarComponent from './NavBarComponent.vue'
 import WOW from 'wow.js'
 import 'animate.css'
+import { useStore } from 'vuex'
+
+const store=useStore()
+
+const language = computed(()=>{
+    return store.getters.getLanguage
+})
+
 
 onMounted(()=>{
     const wow = new WOW(
@@ -50,26 +64,27 @@ const scrollTo = (number)=>{
 
 }
 #description{
-    width: 60%;
+    width: 80%;
     padding: 20px;
-    font-style: italic;
     position: absolute;
-    right: 10px;
-    top: 200px;
+    top: 25%;
+    border-radius: 4px;
+    font-size: 20px;
+    font-weight: 800;
+    background-color: #2f53589e;
 }
 #img{
-    width: 40%;
-    height: 50vh;
+    width: 100%;
+    height: 70vh;
     object-fit: cover;
-    border-radius: 4px;
-    filter: grayscale(90%);
+    filter: blur(3px);
     position: absolute;
-    left: 0px;
-    top: 200px;
+    bottom: 0px;
 }
 h1{
     color: rgb(199, 199, 199);
     margin-top: 30px;
+    font-size: 40px;
 }
 h2{
     margin-bottom: 30px;
@@ -85,7 +100,7 @@ h1,h2,#description{
 .btn_container{
     width: 100%;
     position: absolute;
-    bottom: 3%;
+    bottom: 15%;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -93,11 +108,12 @@ h1,h2,#description{
 }
 .btn{
     width: 150px;
-    height: 47px;
+    height: 57px;
     border-radius: 25px;
     border: none;
     font-family: var(--font1);
     margin-top: 10px;
+    font-size: 16px;
 }
 .resume_btn{
     width: 60%;
@@ -118,10 +134,13 @@ h1,h2,#description{
 }
 @media (min-width:1000px){
     #img{
-        top: 150px;
-        height: 70%;
-        width: 30%;
+        top: 78px;
+        height: 100%;
+        width: 50%;
+        filter: blur(3px);
+        left: 0px;
     }
+
 .resume_btn:hover{
     cursor: pointer;
     transition: .3s all ease-in-out;
@@ -135,6 +154,11 @@ h1,h2,#description{
     background-color: transparent;
     border: 2px solid var(--grey1);
     color: rgb(226, 224, 224);  
+}
+#title,#subtitle,#description{
+    z-index: 100;
+    color: white;
+    
 }
 .btn_container{
     flex-direction: row;
@@ -164,10 +188,11 @@ h2{
 }
 #description{
     left: 32%;
-    top: 48%;
+    top: 50%;
     width: 800px;
     font-size: 22px;
     font-weight: 200;
 }
+
 }
 </style>

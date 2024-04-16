@@ -1,27 +1,36 @@
 <template>
-    <div id="contactSection" class="contact_section_main_container">
-        <h1 class="wow  animate__animated animate__fadeIn">Contact <span id="me">Me</span></h1>
-        <form action="">
+    <div id="contactSection" class="contact_section_main_container" >
+        <h1 v-if="language == 'en'" class="wow  animate__animated animate__fadeIn">Contact <span id="me">Me</span></h1>
+        <h1 v-else class="wow  animate__animated animate__fadeIn">Contactame</h1>
+        <form action="https://formsubmit.co/gamarras1993@gmail.com" method="POST">
             <div class="container_1 wow animate__animated animate__fadeInRight">
-                <input type="text" placeholder="Full name">
-                <input type="email" placeholder="Email adress">
+                <input type="text" :placeholder="language === 'en' ? 'Name' : 'Nombre '" name="name">
+                <input type="email" :placeholder="language == 'en'?'Email adress':'Correo electronico'">
             </div>
             <div class="container_2 wow animate__animated animate__fadeInLeft">
-                <input type="text" placeholder="Subject">
-                <input type="text" placeholder="Mobile number">
+                <input type="text" :placeholder="language == 'en'?'Subject (Optional)':'Asunto (opcional)'" name="subject">
             </div>
-            <input id="msg" type="text" placeholder="Your message" class="wow animate__animated animate__fadeInUp">
-            <button id="btn" class="wow animate__animated animate__fadeInDown">Send message</button>
+            <input id="msg" type="text" :placeholder="languge == 'en' ? 'Your message':'Tu mensaje'" class="wow animate__animated animate__fadeInUp" name="message">
+            <button v-if="language == 'en'" id="btn" class="wow animate__animated animate__fadeInDown" type="submit">Send message</button>
+            <button v-else id="btn" class="wow animate__animated animate__fadeInDown" type="submit">Enviar mensaje</button>
+            <input type="hidden" name="_next" value="https://santiago-gamarra.vercel.app/#/">
+            <input type="hidden" name="_captcha" value="false">
         </form>
 
     </div>
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted,computed } from 'vue';
 import WOW from 'wow.js'
 import 'animate.css'
+import { useStore } from 'vuex'
 
+const store=useStore()
+
+const language = computed(()=>{
+    return store.getters.getLanguage
+})
 onMounted(()=>{
     const wow = new WOW(
         {
