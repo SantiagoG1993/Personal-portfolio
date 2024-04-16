@@ -122,14 +122,14 @@ border-radius:5px!important;
     align-items: center;
 }
 .tecs_icos_container {
-font-size: 55px;
-display: flex;
-justify-content: flex-start;
-gap: 20px;
-flex-wrap: wrap;
-width: 79%;
-color: rgb(75, 75, 75);
-margin-top: 30px;
+    font-size: 55px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;
+    width: 79%;
+    color: rgb(75, 75, 75);
+    margin-top: 30px;
 }
 h2{
     font-family: var(--font1);

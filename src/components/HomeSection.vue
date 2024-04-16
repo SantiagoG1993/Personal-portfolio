@@ -67,7 +67,7 @@ const scrollTo = (number)=>{
     width: 80%;
     padding: 20px;
     position: absolute;
-    top: 25%;
+    top: 30%;
     border-radius: 4px;
     font-size: 20px;
     font-weight: 800;
