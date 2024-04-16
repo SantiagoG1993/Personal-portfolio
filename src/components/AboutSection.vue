@@ -77,8 +77,8 @@ onMounted(()=>{
 }
 #img_about{
 filter: grayscale(80%);
-width: 40%;
-height: 200px;
+width: 35%;
+height: 140px;
 object-fit: cover;
 position: absolute;
 bottom: 5%;
@@ -111,7 +111,7 @@ border-radius:5px!important;
 }
 #text_description{
     font-weight: 300;
-    font-size: 24px;
+    font-size: 20px;
     width: 90%;
 }
 .tecs_container{
@@ -138,7 +138,7 @@ h2{
 .list_tecs{
     position: absolute;
     right: 10%;
-    bottom: 70px;
+    bottom: 40px;
     font-family: Arial, Helvetica, sans-serif;
 }
 @media (min-width:1000px){

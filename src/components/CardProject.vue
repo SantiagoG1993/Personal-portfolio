@@ -36,18 +36,23 @@ const handleHover = ()=>{
         background-color: transparent;
         border-radius: 4px;
         display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         position: relative;
     }
     .text_container{
         width: 100%;
-        text-align: center;
         z-index: 4;
         height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        text-align: center;
         cursor: pointer;
+        position: absolute;
+        top: 0%;
     }
 h1,p{
     font-family: var(--font1);
