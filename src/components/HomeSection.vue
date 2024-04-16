@@ -4,7 +4,7 @@
         <h1 id="title" class="wow animate__animated animate__fadeInDown">Santiago Gamarra</h1>
         <h2 id="subtitle" class="wow animate__animated animate__fadeInUp" v-if="language == 'en'">Full Stack web developer</h2>
         <h2 id="subtitle" class="wow animate__animated animate__fadeInUp" v-else>Desarrollador web full stack</h2>
-        <img src="IMAGE.JPG" alt="profileimg" id="img" class="wow animate__animated animate__fadeInLeft"> 
+        <img src="IMAGE.jpg" alt="profileimg" id="img" class="wow animate__animated animate__fadeInLeft"> 
         <p v-if="language=='en'" id="description" class="wow animate__animated animate__fadeInRight">Hi! , I'm Santiago, i build websites and applications using Vue.js and Java. <br>I'm from Buenos Aires , Argentina and i'm currently working as a freelancer
         </p>
         <p v-else id="description" class="wow animate__animated animate__fadeInRight">¡Hola! , Soy Santiago, desarrollo sitios web y aplicaciones usando Vue.js y Java. <br>Soy de Buenos Aires, Argentina y actualmente trabajo como freelance
