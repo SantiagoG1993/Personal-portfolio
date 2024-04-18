@@ -117,7 +117,7 @@ h1,h2,#description{
     font-size: 16px;
 }
 .resume_btn{
-    width: 60%;
+    width: 220px;
     background-color: #2F5358;
     color: var(--grey1);
 }
