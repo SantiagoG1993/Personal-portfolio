@@ -10,8 +10,8 @@
         <p v-else id="description" class="wow animate__animated animate__fadeInRight">¡Hola! , Soy Santiago, desarrollo sitios web y aplicaciones usando Vue.js y Java. <br>Soy de Buenos Aires, Argentina y actualmente trabajo como freelance
         </p>
         <div class="btn_container wow animate__animated animate__fadeInDown" >
-            <a :href="cvFilePath" download="Santiago Gamarra(English).pdf" v-if="language=='en'"><button class="btn resume_btn">Download resume</button></a>
-            <a v-else :href="cvFilePath" download="Santiago Gamarra(Español).pdf"><button  class="btn resume_btn">Descargar CV</button></a>
+            <a :href="cvFilePath" download="Santiago-Gamarra(en).pdf" v-if="language=='en'"><button class="btn resume_btn">Download resume</button></a>
+            <a v-else :href="cvFilePath" download="Santiago-Gamarra(es).pdf"><button  class="btn resume_btn">Descargar CV</button></a>
             <button v-if="language=='en'" class="btn read_btn" @click="scrollTo(1)">Read more!</button>
             <button v-else class="btn read_btn" @click="scrollTo(1)">Saber mas!</button>
         </div>
